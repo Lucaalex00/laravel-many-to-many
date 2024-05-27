@@ -39,6 +39,33 @@
                 <h4 class="text-danger ">{{ $message }}</h4>
             @enderror
 
+            {{-- Technologies --}}
+            @foreach ($techs as $tech)
+                {{-- IF --}}
+                @if ($errors->any())
+                    <div class="form-check form-check-inline text-warning"> @error('techs')
+                            <h6 class="text-danger ">{{ $message }}</h6>
+                        @enderror
+                        <input class="form-check-input bg-dark @error('tech') is-invalid @enderror" type="checkbox"
+                            {{ in_array($tech->id, old('techs', [])) ? 'checked' : '' }} id="technology-{{ $tech->id }}"
+                            value="{{ $tech->id }}" name=techs[] />
+                        <label class="form-check-label @error('tech') bg-danger @enderror"
+                            for="technology-{{ $tech->id }}">{{ $tech->name }} No Validation</label>
+                    </div>
+                    {{-- Else --}}
+                @else
+                    <div class="form-check form-check-inline text-warning"> @error('techs')
+                            <h6 class="text-danger ">{{ $message }}</h6>
+                        @enderror
+                        <input class="form-check-input bg-dark @error('tech') is-invalid @enderror" type="checkbox"
+                            {{ in_array($tech->id, old('techs', [])) ? 'checked' : '' }}
+                            id="technology-{{ $tech->id }}" value="{{ $tech->id }}" name=techs[] />
+                        <label class="form-check-label @error('tech') bg-danger @enderror"
+                            for="technology-{{ $tech->id }}">{{ $tech->name }}</label>
+                    </div>
+                @endif
+            @endforeach
+
             {{-- Content --}}
             <div class="mb-3 text-light">
                 <label for="content" class="form-label">Content</label>

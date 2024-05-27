@@ -49,7 +49,7 @@
                     @enderror
                     <input class="form-check-input bg-dark @error('tech') is-invalid @enderror" type="checkbox"
                         {{ in_array($tech->id, old('techs', [])) ? 'checked' : '' }} id="technology-{{ $tech->id }}"
-                        value="{{ $tech->id }}" />
+                        value="{{ $tech->id }}" name=techs[] />
                     <label class="form-check-label @error('tech') bg-danger @enderror"
                         for="technology-{{ $tech->id }}">{{ $tech->name }}</label>
                 </div>

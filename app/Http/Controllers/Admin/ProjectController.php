@@ -70,6 +70,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         /* dd($project->all()); */
+
         return view('admin.portfolio.show', compact('project'));
     }
 
@@ -78,7 +79,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.portfolio.edit', compact('project'));
+        $techs = Technology::all();
+
+        return view('admin.portfolio.edit', compact('project', 'techs'));
     }
 
     /**
@@ -86,7 +89,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        /*  dd($request->all()); */
+        dd($request->all());
 
         /* Validate */
 
