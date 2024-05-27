@@ -58,8 +58,8 @@
                             <h6 class="text-danger ">{{ $message }}</h6>
                         @enderror
                         <input class="form-check-input bg-dark @error('tech') is-invalid @enderror" type="checkbox"
-                            {{ old($tech->id) ? 'checked' : '' }} id="technology-{{ $tech->id }}"
-                            value="{{ $tech->id }}" name=techs[] />
+                            {{ in_array($tech->id, old('techs', [])) ? 'checked' : '' }}
+                            id="technology-{{ $tech->id }}" value="{{ $tech->id }}" name=techs[] />
                         <label class="form-check-label @error('tech') bg-danger @enderror"
                             for="technology-{{ $tech->id }}">{{ $tech->name }}</label>
                     </div>

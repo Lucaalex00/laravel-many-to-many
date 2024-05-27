@@ -40,9 +40,13 @@
                             @endif
 
                             <td class=" text-center shadow">{{ $project->title }}</td>
+
                             <td class=" text-center w-25"><a target="_blank"
                                     class=" text-decoration-none text-warning shadow"
                                     href="{{ $project->link }}">{{ $project->link }}</a></td>
+
+
+
                             <td class=" text-center">
                                 <div class="d-flex flex-column gap-3">
                                     <a class="btn btn-warning" href="{{ route('admin.portfolio.show', $project) }}">
@@ -70,7 +74,8 @@
                                                     Delete Post "{{ $project->title }}"
                                                 </h5>
                                             </div>
-                                            <div class="modal-body text-danger">Are you sure to delete this item ? </div>
+                                            <div class="modal-body text-danger">Are you sure to delete this item ?
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                     Close

@@ -70,8 +70,8 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         /* dd($project->all()); */
-
-        return view('admin.portfolio.show', compact('project'));
+        $techs = Technology::all();
+        return view('admin.portfolio.show', compact('project', 'techs'));
     }
 
     /**
@@ -89,7 +89,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        dd($request->all());
+        /* dd($request->all()); */
 
         /* Validate */
 
@@ -110,8 +110,9 @@ class ProjectController extends Controller
 
         /* Update */
         $project->update($validated);
-
-
+        if ($request->has('techs')) {
+            $project->technologies()->attach($validated['techs']);
+        }
         /* Redirect */
         return to_route('admin.portfolio.show', $project)->with('message', 'Project "' . $project->title . '" Updated');
     }

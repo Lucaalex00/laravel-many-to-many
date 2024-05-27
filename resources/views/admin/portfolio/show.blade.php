@@ -19,6 +19,11 @@
         <h3>Title: {{ $project->title }}</h3>
         <div>Slug: {{ $project->slug }}</div>
 
+        <h3>{{ $project }}</h3>
+        {{--   @foreach ($techs as $tech)
+            <td class="text-white text-center shadow"> Techs : {{ $project->tech['name'] }}</td>
+        @endforeach
+ --}}
         <div class="container d-flex align-items-center gap-2 p-0 my-2">
             <img width="300" height="300" src="{{ asset('storage/' . $project->cover_image) }}"
                 alt="Image of {{ $project->title }}">
