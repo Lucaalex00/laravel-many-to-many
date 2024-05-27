@@ -27,6 +27,7 @@ class ProjectController extends Controller
     public function create(Project $project)
     {
         $techs = Technology::all();
+        /* dd($techs); */
         return view('admin.portfolio.create', compact('project', 'techs'));
     }
 
@@ -49,8 +50,14 @@ class ProjectController extends Controller
         $validated['cover_image'] = $image_path;
         /* dd($validated); */
 
+
         /* Create */
-        Project::create($validated);
+        $project = Project::create($validated);
+        //TECHNOLOGIES
+
+        if ($request->has('techs')) {
+            $project->techs()->attach($validated['techs']);
+        }
 
 
         /* Redirect */

@@ -15,7 +15,7 @@
                 <small id="cover_imageId" class="form-text text-muted">Type a cover_image</small>
             </div>
             @error('cover_image')
-                <h4 class="text-danger ">{{ $message }}</h4>
+                <h6 class="text-danger ">{{ $message }}</h6>
             @enderror
 
             {{-- Title --}}
@@ -27,7 +27,7 @@
                 <small id="titleId" class="form-text text-muted">Type a Title</small>
             </div>
             @error('title')
-                <h4 class="text-danger ">{{ $message }}</h4>
+                <h6 class="text-danger ">{{ $message }}</h6>
             @enderror
 
             {{-- Slug --}}
@@ -39,8 +39,21 @@
                 <small id="slugId" class="form-text text-muted">Type a Slug</small>
             </div>
             @error('slug')
-                <h4 class="text-danger ">{{ $message }}</h4>
+                <h6 class="text-danger ">{{ $message }}</h6>
             @enderror
+
+            {{-- Technologies --}}
+            @foreach ($techs as $tech)
+                <div class="form-check form-check-inline text-warning"> @error('techs')
+                        <h6 class="text-danger ">{{ $message }}</h6>
+                    @enderror
+                    <input class="form-check-input bg-dark @error('tech') is-invalid @enderror" type="checkbox"
+                        {{ in_array($tech->id, old('techs', [])) ? 'checked' : '' }} id="technology-{{ $tech->id }}"
+                        value="{{ $tech->id }}" />
+                    <label class="form-check-label @error('tech') bg-danger @enderror"
+                        for="technology-{{ $tech->id }}">{{ $tech->name }}</label>
+                </div>
+            @endforeach
 
             {{-- Content --}}
             <div class="mb-3 text-light">
@@ -51,7 +64,7 @@
                 <small id="contentId" class="form-text text-muted">Type a Content</small>
             </div>
             @error('content')
-                <h4 class="text-danger ">{{ $message }}</h4>
+                <h6 class="text-danger ">{{ $message }}</h6>
             @enderror
 
             {{-- Link --}}
@@ -63,7 +76,7 @@
                 <small id="linkId" class="form-text text-muted">Type a Link</small>
             </div>
             @error('link')
-                <h4 class="text-danger ">{{ $message }}</h4>
+                <h6 class="text-danger ">{{ $message }}</h6>
             @enderror
 
             {{-- SUBMIT --}}
