@@ -56,7 +56,7 @@ class ProjectController extends Controller
         //TECHNOLOGIES
 
         if ($request->has('techs')) {
-            $project->techs()->attach($validated['techs']);
+            $project->technologies()->attach($validated['techs']);
         }
 
 
