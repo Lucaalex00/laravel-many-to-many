@@ -70,8 +70,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         /* dd($project->all()); */
-        $techs = Technology::all();
-        return view('admin.portfolio.show', compact('project', 'techs'));
+        return view('admin.portfolio.show', compact('project'));
     }
 
     /**
@@ -111,8 +110,12 @@ class ProjectController extends Controller
         /* Update */
         $project->update($validated);
         if ($request->has('techs')) {
-            $project->technologies()->attach($validated['techs']);
+            $project->technologies()->sync($validated['techs']);
+        } else {
+            $project->technologies()->sync($validated[]);
         }
+
+
         /* Redirect */
         return to_route('admin.portfolio.show', $project)->with('message', 'Project "' . $project->title . '" Updated');
     }
@@ -122,7 +125,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-
+        /* $project->technologies()->detach(); */
 
         if ($project->cover_image) {
             //REMOVE THE OLD IMAGE INSIDE ON LOCAL STORAGE
